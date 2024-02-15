@@ -1,21 +1,34 @@
 <style type="text/css" media="screen">
+  :root {
+    --links-color: #217365;
+    --accent-color: #217365;
+    --progress-percentage: calc(100% * 2 / 48);
+    /**
+    * 2/24 livros iniciados
+    * 0/24 livros lidos
+    * Total de 48 pontos - iniciados + lidos
+    */
+  }
+
   * {
     font-family: Lyon-Text, Georgia, ui-serif, serif;
     ;
   }
 
-  .gr_custom_container_1704319661 {
-    /* customize your Goodreads widget container here*/
+  center {
+    display: none !important;
+  }
+
+  .gr_custom_container_1708024652 {
     border: none;
     border-radius: 10px;
-    padding: 10px 5px 10px 5px;
+    padding: 10px 5px 0px 5px;
     background-color: #FFF;
     color: #000;
     width: 99%;
   }
 
-  .gr_custom_header_1704319661 {
-    /* customize your Goodreads header here*/
+  .gr_custom_header_1708024652 {
     border-bottom: 1px double #cac9b5;
     width: 100%;
     margin-bottom: 15px;
@@ -24,12 +37,11 @@
     font-size: 120%
   }
 
-  .gr_custom_header_1704319661>a {
+  .gr_custom_header_1708024652>a {
     color: rgb(55, 53, 47);
   }
 
-  .gr_custom_each_container_1704319661 {
-    /* customize each individual book container here */
+  .gr_custom_each_container_1708024652 {
     width: 100%;
     clear: both;
     margin-bottom: 10px;
@@ -39,8 +51,7 @@
     height: 75px;
   }
 
-  .gr_custom_book_container_1704319661 {
-    /* customize your book covers here */
+  .gr_custom_book_container_1708024652 {
     overflow: hidden;
     height: 60px;
     float: left;
@@ -50,39 +61,78 @@
     text-align: center;
   }
 
-  .gr_custom_author_1704319661 {
-    /* customize your author names here */
+  .gr_custom_author_1708024652 {
     font-size: 10px;
     margin-top: 5px;
   }
 
-  .gr_custom_author_1704319661>a,
-  .gr_custom_title_1704319661>a {
-    color: #658b98;
+  .gr_custom_author_1708024652>a,
+  .gr_custom_title_1708024652>a {
+    color: var(--links-color);
     text-decoration: none;
   }
 
-  .gr_custom_title_1704319661 {
-    /* customize your book titles here */
+  .gr_custom_title_1708024652 {
     text-transform: lowercase;
   }
 
-  .gr_custom_title_1704319661:first-letter {
+  .gr_custom_title_1708024652:first-letter {
     text-transform: uppercase
   }
 
-  .gr_custom_tags_1704319661 {
-    /* customize your tags here */
-    font-size: 10px;
-    color: gray;
+  .gr_custom_rating_1708024652 {
+    float: right;
   }
 
-  .gr_custom_rating_1704319661 {
-    /* customize your rating stars here */
-    float: right;
+  .progress-container {
+    margin: 2px auto;
+    text-align: center;
+  }
+
+  .progress-wrapper {
+    padding: 2px;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25),
+      0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .progress-bar {
+    height: 18px;
+    border-radius: 30px;
+    background-image: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.05));
+    transition: 0.4s linear;
+    transition-property: width, background-color;
+  }
+
+  .progress-moved .progress-bar {
+    width: var(--progress-percentage);
+    background-color: var(--links-color);
+    animation: progressAnimation 6s;
+  }
+
+  @keyframes progressAnimation {
+    0% {
+      width: 0%;
+      background-color: var(--accent-color);
+    }
+
+    100% {
+      width: var(--progress-percentage);
+      background-color: var(--accent-color);
+    }
   }
 </style>
 
 <script
-  src="https://www.goodreads.com/review/custom_widget/50305336.Clube%20do%20Livro%20-%202024?cover_position=left&cover_size=small&num_books=5&order=a&shelf=24-for-2024&show_author=1&show_cover=1&show_rating=1&show_review=0&show_tags=0&show_title=1&sort=date_updated&widget_bg_color=FFFFFF&widget_bg_transparent=&widget_border_width=1&widget_id=1704319661&widget_text_color=000000&widget_title_size=medium&widget_width=medium"
+  src="https://www.goodreads.com/review/custom_widget/50305336.Clube%20do%20Livro%20-%202024?cover_position=left&cover_size=small&num_books=5&order=a&shelf=24-for-2024&show_author=1&show_cover=1&show_rating=1&show_review=0&show_tags=0&show_title=1&sort=position&widget_bg_color=FFFFFF&widget_bg_transparent=&widget_border_width=1&widget_id=1708024652&widget_text_color=000000&widget_title_size=medium&widget_width=medium"
   type="text/javascript" charset="utf-8"></script>
+
+<div class="progress-container">
+  <div class="progress-wrapper progress-moved">
+    <div class="progress-bar">
+    </div>
+  </div>
+</div>
